@@ -1,6 +1,6 @@
 using System.IO.Ports;
 
-namespace CommunicationArduino.Protocols
+namespace Communication.Protocols
 {
     internal class Serial
     {
