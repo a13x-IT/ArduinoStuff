@@ -1,16 +1,30 @@
-using System;
-using CommunicationArduino.Protocols;
+using System.IO.Ports;
+using Communication.Protocols;
+
 namespace Communication.Connect;
-internal class CommunicateSerial : ICommunicate{
+
+internal class CommunicateSerial : ICommunicate
+{
     private Serial serial;
-    public void Initialize(string port){
-        ArduinoSerialPortCommunication(port);
+
+
+    internal CommunicateSerial(string port)
+    {
+        serial = new Serial(port);
     }
-    public void Send(string message){
-        serial.Send(message);
+
+    public void Send(string message)
+    {
+        serial.Write(message);
     }
-    public string Receive(SerialDataReceivedEventHandler handler){
-        serialPort.DataReceived += handler;
-        reader serialPort.DataReceived;
+
+    public string Receive(SerialDataReceivedEventHandler handler)
+    {
+        serial.SerialDataReceivedEventHandler(handler);
+        return null;
+    }
+
+    private string test()
+    {
     }
 }

@@ -1,17 +1,25 @@
-using System;
-using CommunicationArduino.Protocols;
+using System.Net;
+using Communication.Protocols;
+
 namespace Communication.Connect;
-partial class Communicate : ICommunicate{
+
+internal class CommunicateTCP : ICommunicate
+{
     private Tcp tcp;
-    public void Initialize(IPAddress ip, int port){
-        tcp = new Tcp(IPAddress ip, int port);
+
+    internal CommunicateTCP(IPAddress ip, int port)
+    {
+        tcp = new Tcp(ip, port);
         tcp.Connect();
     }
-    public void Send(string message){
+
+    public void Send(string message)
+    {
         tcp.Send(message);
     }
-    public string Receive(){
-        ReceiveAsync();
+
+    public string Receive()
+    {
         return RecievedMessage;
     }
 }

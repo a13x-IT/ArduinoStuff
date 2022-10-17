@@ -1,7 +1,10 @@
+using System.IO.Ports;
+
 namespace Communication;
+
 public interface ICommunicate
 {
-    void Connect();
-    string Send(string message);
-    string Receive();
+    public void Send(string message);
+    public string Receive();
+    public string Recieve(SerialDataReceivedEventHandler handler);
 }

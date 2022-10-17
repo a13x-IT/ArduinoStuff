@@ -12,11 +12,13 @@ namespace Communication.Protocols
         private SerialPort serialPort;
 
         //Opens Serial Port
-        internal void ArduinoSerialPortCommunication(string port) //port: COM3
+        internal Serial(string port) //port: COM3
         {
             this.serialPort = new SerialPort(port, 9600, Parity.None, (int)StopBits.One);
             this.serialPort.Open();
         }
+
+        internal SerialPort SerialPort { get; }
 
         //subscribing to the event "Receiving Data"; if we receive Data this Method will be called
         internal void SerialDataReceivedEventHandler(SerialDataReceivedEventHandler handler)

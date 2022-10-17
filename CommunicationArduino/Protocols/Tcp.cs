@@ -7,6 +7,7 @@ namespace Communication.Protocols
     {
         private IPAddress ip;
         private int port;
+        private string recievedMessage;
         private TcpClient tcpClient = null!;
         private StreamWriter writer = null!;
 
@@ -18,10 +19,11 @@ namespace Communication.Protocols
 
         internal string RecievedMessage
         {
-            set { }
+            set { recievedMessage = value; }
+            get { return this.RecievedMessage; }
         }
 
-        private void Write(string message)
+        internal void Write(string message)
         {
             try
             {
@@ -35,7 +37,7 @@ namespace Communication.Protocols
             }
         }
 
-        private void Connect()
+        internal void Connect()
         {
             if (!string.IsNullOrEmpty(ip.ToString()))
             {
